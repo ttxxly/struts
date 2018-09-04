@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="paypkg" extends="base" namespace="/pay">
+        <action name="*" class="com.sms.core.pay.PayAction" method="{1}">
+            <result name="success">/WEB-INF/views/pay/index.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <!--项目常量-->
+    <constant name="struts.configuration.xml.reload" value="true"/>
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
+    <!--配置后缀名称  http://localhost:8088/hello.do-->
+    <!--do,gerry,, do/gerry,空白-->
+    <constant name="struts.action.extension" value="do,gerry,," />
+
+    <!--包含所有零散的配置文件-->
+    <include file="config/user/struts-user.xml" />
+    <include file="config/pay/struts-pay.xml" />
+    <include file="config/prod/struts-prod.xml" />
+
+    <!--
+        定义基本包
+        abstract="true" 抽象包下面配置Action元素是无效
+    -->
+    <package name="base" extends="struts-default" abstract="true">
+
+        <!--类拦截器========<interceptors>
+            &lt;!&ndash;注册自定义拦截器&ndash;&gt;
+            <interceptor name="loginInterceptor" class="com.sms.core.common.interceptor.ClassInterceptor" />
+            &lt;!&ndash;配置一个拦截栈&ndash;&gt;
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="loginInterceptor"/>
+            </interceptor-stack>
+        </interceptors>-->
+        <interceptors>
+            <!--注册自定义拦截器-->
+            <interceptor name="loginInterceptor" class="com.sms.core.common.interceptor.FilterInterceptor" />
+            <!--配置一个拦截栈-->
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="defaultStack" />
+                <interceptor-ref name="loginInterceptor">
+                    <param name="excludeMethods">login</param>
+                    <!--<param name="includeMethods">配置哪些方法需要被拦截</param>-->
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <!--所有子包都默认使用该拦截器-->
+        <default-interceptor-ref name="loginStack" />
+
+        <!--配置全局视图-->
+        <global-results>
+            <result type="redirect" name="login">/login.jsp</result>
+            <result name="error" type="redirect">/error.jsp</result>
+            <result name="ex">/ex.jsp</result>
+        </global-results>
+
+        <!--全局系统异常处理配置-->
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error" />
+            <exception-mapping exception="com.sms.core.common.ex.BusinessException" result="ex" />
+        </global-exception-mappings>
+
+
+    </package>
+</struts>

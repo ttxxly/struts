@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="prodpkg" extends="base" namespace="/prod">
+       <!-- 局部配置
+       <interceptors>
+            <interceptor name="" class="" />
+        </interceptors>-->
+
+        <action name="*" class="com.sms.core.prod.ProductAction" method="{1}">
+            <result name="success">/WEB-INF/views/prod/index.jsp</result>
+        </action>
+    </package>
+</struts>
