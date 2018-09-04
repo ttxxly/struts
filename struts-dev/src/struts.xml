@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <!--配置允许使用"/"作为访问路径的常量-->
+    <!-- <constant name="struts.enable.SlashesInActionNames" value="true" />-->
+    <!--更改struts2的配置文件后自动加载-->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!--name是可以随便写的保证其唯一性-->
+    <package name="pkg" extends="struts-default" namespace="/test">
+        <action name="helloAction" class="com.struts.demo.TestAction" method="hello">
+            <!--配置视图(默认使用是dispatcher[转发])-->
+            <result name="success" type="dispatcher">/index.jsp</result>
+        </action>
+
+        <action name="addAction" class="com.struts.demo.TestAction" method="add">
+            <!--配置视图(默认使用是dispatcher[转发])-->
+            <result name="success" type="dispatcher">/index.jsp</result>
+        </action>
+
+        <action name="delAction" class="com.struts.demo.TestAction" method="del">
+            <!--配置视图(默认使用是dispatcher[转发])-->
+            <result name="success" type="dispatcher">/index.jsp</result>
+        </action>
+
+        <action name="queryAction" class="com.struts.demo.TestAction" method="query">
+            <!--配置视图(默认使用是dispatcher[转发])-->
+            <result name="success" type="dispatcher">/index.jsp</result>
+        </action>
+    </package>
+
+    <package name="pkg1" extends="struts-default" namespace="/test1">
+        <action name="helloAction" class="com.struts.demo.TestAction" method="hello">
+            <!--配置视图(redirect 重定向)-->
+            <result name="success" type="redirect">/index.jsp</result>
+        </action>
+    </package>
+
+    <!--一个类不同方法的通配-->
+    <package name="pkg11" extends="struts-default" namespace="/common">
+        <!--http://localhost:8080/test/testAction_add.action-->
+        <action name="testAction/*" class="com.struts.demo.TestAction" method="{1}">
+            <!--配置视图(默认使用是dispatcher[转发])-->
+            <result name="success" type="dispatcher">/index.jsp</result>
+            <!--一个Action只能搞一个相同的通配-->
+            <result name="{1}">/{1}.jsp</result>
+        </action>
+    </package>
+
+    <!--不同类的通配-->
+    <package name="pkg112" extends="struts-default" namespace="/common1">
+        <!--http://localhost:8080/test/testAction_add.action-->
+        <action name="*-*" class="com.struts.demo.{1}Action" method="{2}">
+            <!--配置视图(默认使用是dispatcher[转发])-->
+            <result name="success" type="dispatcher">/index.jsp</result>
+            <!--一个Action只能搞一个相同的通配-->
+            <result name="{2}">/{2}.jsp</result>
+        </action>
+    </package>
+</struts>
