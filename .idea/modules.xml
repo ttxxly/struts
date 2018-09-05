@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Hibernate-dev/Hibernate-dev.iml" filepath="$PROJECT_DIR$/Hibernate-dev/Hibernate-dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/Struts2_App/Struts2_App.iml" filepath="$PROJECT_DIR$/Struts2_App/Struts2_App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hibernate-lesson/hibernate-lesson.iml" filepath="$PROJECT_DIR$/hibernate-lesson/hibernate-lesson.iml" />
       <module fileurl="file://$PROJECT_DIR$/struts-dev/struts-dev.iml" filepath="$PROJECT_DIR$/struts-dev/struts-dev.iml" />
     </modules>
   </component>
