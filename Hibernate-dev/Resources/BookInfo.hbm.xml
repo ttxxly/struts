@@ -1,0 +1,15 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.gerry.demo.entity">
+    <class name="BookInfo" table="tb_book1" schema="root">
+        <!--id配置的就是主键-->
+        <id name="bookId" column="book_id">
+            <!--配置主键生成策略【使用本身数据库的自增策略】-->
+            <generator class="native"/>
+        </id>
+        <property name="bookName" column="book_name" length="30" />
+        <property name="bookPrice" column="book_price"/>
+        <property name="bookDate" column="book_date"/>
+    </class>
+</hibernate-mapping>

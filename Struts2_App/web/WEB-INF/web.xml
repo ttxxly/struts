@@ -13,5 +13,5 @@
         <filter-name>struts</filter-name>
         <url-pattern>*.do</url-pattern>
         <url-pattern>*.gerry</url-pattern>
-    </filter-mapping>
+        </filter-mapping>
 </web-app>
