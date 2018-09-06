@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--name表的映射类的全名称 table: 数据库对应表名称-->
+    <class name="com.orm.domain.xml.Dept" table="tb_dept">
+
+        <!--
+            CTRL+D 复制鼠标所在行
+            CTRL+Y 删除鼠标所在行
+        -->
+        <id name="deptId" column="dept_id">
+            <generator class="identity" />
+        </id>
+        <property name="deptName" column="dept_name" length="30"/>
+        <!--一对多-->
+        <set name="emps" inverse="true" cascade="save-update">
+            <!--外键列-->
+            <key column="dept_id"/>
+            <one-to-many class="com.orm.domain.xml.Emp"/>
+        </set>
+    </class>
+</hibernate-mapping>

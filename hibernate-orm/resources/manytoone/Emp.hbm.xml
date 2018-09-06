@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!--name表的映射类的全名称 table: 数据库对应表名称-->
+    <class name="com.orm.domain.xml.Emp" table="tb_emp">
+        <id name="empId">
+            <column name="emp_id" />
+            <generator class="identity" />
+        </id>
+        <property name="empName" column="emp_name" length="30"/>
+        <many-to-one name="dept" class="com.orm.domain.xml.Dept">
+            <column name="dept_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
